@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +26,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,7 +36,7 @@ public class PokerController implements Initializable {
     @FXML
     private HBox buttonArea, seat1, seat2, seat3, seat4, seat5, seat6;
     @FXML
-    private Button btnClear, btnNewHand, btnShuffle, btnDealFlip, btnDealHand;
+    private Button btnClear, btnNewHand, btnDealHand;
     @FXML
     private Button btnSeat1, btnSeat2, btnSeat3, btnSeat4, btnSeat5, btnSeat6;
     @FXML
@@ -50,43 +52,40 @@ public class PokerController implements Initializable {
         pokerModel = new PokerModel();
     }
 
-    public void handleShuffle() {
+    private void shuffle() {
         handleClearTable();
         pokerModel.shuffle();
-        disableDealButtons(false);
     }
 
-    public void handleDealFlip() {
-        players.clear();
-
-        players.add(seat2);
-        lblSeat2.setText("HERO");
-
-        players.add(seat5);
-        lblSeat5.setText("VILLAIN");
+    public void addTwoPlayers() {
+        updateSeat(2, "HERO 🦸‍");
+        updateSeat(5, "VILLAIN 🦹");
 
         handleDealHand();
     }
 
     public void handleDealHand() {
+        shuffle();
+
         disableDealButtons(true);
         btnClear.setDisable(true);
         btnNewHand.setDisable(true);
 
         if(players.isEmpty()) {
-            handleDealFlip();
+            addTwoPlayers();
         } else {
+            List<HBox> playersCopy = players.stream().sorted(Comparator.comparing(Node::getId)).toList();
 
             //Deal hole cards to each player
-            Timeline holeCards = new Timeline(new KeyFrame(Duration.seconds(2.5/ (players.size()*2) ), new EventHandler<ActionEvent>() {
+            Timeline holeCards = new Timeline(new KeyFrame(Duration.seconds(2.5/ (playersCopy.size()*2) ), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    dealCard(players.get(index));
+                    dealCard(playersCopy.get(index));
                     index++;
-                    if(index >= players.size()) index = 0;
+                    if(index >= playersCopy.size()) index = 0;
                 }
             }));
-            holeCards.setCycleCount(players.size()*2);
+            holeCards.setCycleCount(playersCopy.size()*2);
             holeCards.play();
 
 
@@ -260,10 +259,7 @@ public class PokerController implements Initializable {
         seat5.getChildren().clear();
         seat6.getChildren().clear();
 
-        btnClear.setDisable(true);
-        btnNewHand.setDisable(true);
-        btnShuffle.setDisable(false);
-        btnDealFlip.setDisable(true);
+        disableDealButtons(false);
     }
 
     private void handleClearPlayers() {
@@ -294,8 +290,6 @@ public class PokerController implements Initializable {
     private void disableDealButtons(boolean disabled) {
         btnClear.setDisable(!disabled);
         btnNewHand.setDisable(!disabled);
-        btnShuffle.setDisable(disabled);
-        btnDealFlip.setDisable(disabled);
         btnDealHand.setDisable(disabled);
     }
 }

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="300.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.PokerController">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="300.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(darkslategray, black);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.PokerController">
    <children>
-      <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="300.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: green; -fx-background-radius: 140;" VBox.vgrow="ALWAYS">
+      <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="300.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: darkgreen; -fx-background-radius: 140;" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,12 +30,12 @@
          <children>
             <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblSeat1" text="Seat 1" textFill="WHITE" VBox.vgrow="ALWAYS">
+                  <Label fx:id="lblSeat1" opacity="0.75" text="Seat 1" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></Label>
                   <HBox fx:id="seat1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="36.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button fx:id="btnSeat1" mnemonicParsing="false" onAction="#handleSeat1" style="-fx-background-radius: 7;" text="Sit Here">
+                  <Button fx:id="btnSeat1" mnemonicParsing="false" onAction="#handleSeat1" opacity="0.75" style="-fx-background-radius: 7;" text="Sit Here">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
@@ -39,12 +46,12 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblSeat2" text="Seat 2" textFill="WHITE">
+                  <Label fx:id="lblSeat2" opacity="0.75" text="Seat 2" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></Label>
                   <HBox fx:id="seat2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="36.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button fx:id="btnSeat2" mnemonicParsing="false" onAction="#handleSeat2" style="-fx-background-radius: 7;" text="Sit Here">
+                  <Button fx:id="btnSeat2" mnemonicParsing="false" onAction="#handleSeat2" opacity="0.75" style="-fx-background-radius: 7;" text="Sit Here">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
@@ -55,12 +62,12 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblSeat3" text="Seat 3" textFill="WHITE">
+                  <Label fx:id="lblSeat3" opacity="0.75" text="Seat 3" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></Label>
                   <HBox fx:id="seat3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="36.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button fx:id="btnSeat3" mnemonicParsing="false" onAction="#handleSeat3" style="-fx-background-radius: 7;" text="Sit Here">
+                  <Button fx:id="btnSeat3" mnemonicParsing="false" onAction="#handleSeat3" opacity="0.75" style="-fx-background-radius: 7;" text="Sit Here">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
@@ -71,12 +78,12 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblSeat4" text="Seat 4" textFill="WHITE">
+                  <Label fx:id="lblSeat4" opacity="0.75" text="Seat 4" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></Label>
                   <HBox fx:id="seat4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="36.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button fx:id="btnSeat4" mnemonicParsing="false" onAction="#handleSeat4" style="-fx-background-radius: 7;" text="Sit Here">
+                  <Button fx:id="btnSeat4" mnemonicParsing="false" onAction="#handleSeat4" opacity="0.75" style="-fx-background-radius: 7;" text="Sit Here">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
@@ -87,12 +94,12 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblSeat5" text="Seat 5" textFill="WHITE">
+                  <Label fx:id="lblSeat5" opacity="0.75" text="Seat 5" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></Label>
                   <HBox fx:id="seat5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="36.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button fx:id="btnSeat5" mnemonicParsing="false" onAction="#handleSeat5" style="-fx-background-radius: 7;" text="Sit Here">
+                  <Button fx:id="btnSeat5" mnemonicParsing="false" onAction="#handleSeat5" opacity="0.75" style="-fx-background-radius: 7;" text="Sit Here">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
@@ -103,12 +110,12 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblSeat6" text="Seat 6" textFill="WHITE">
+                  <Label fx:id="lblSeat6" opacity="0.75" text="Seat 6" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font></Label>
                   <HBox fx:id="seat6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="36.0" prefHeight="100.0" prefWidth="200.0" />
-                  <Button fx:id="btnSeat6" mnemonicParsing="false" onAction="#handleSeat6" style="-fx-background-radius: 7;" text="Sit Here">
+                  <Button fx:id="btnSeat6" mnemonicParsing="false" onAction="#handleSeat6" opacity="0.75" style="-fx-background-radius: 7;" text="Sit Here">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
@@ -117,7 +124,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
             </VBox>
-            <FlowPane fx:id="board" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="108.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-border-radius: 50;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <FlowPane fx:id="board" alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="108.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-border-radius: 50; -fx-background-color: green; -fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <effect>
                   <DropShadow />
                </effect></FlowPane>
@@ -128,23 +135,15 @@
       </GridPane>
       <HBox fx:id="buttonArea" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="50.0" minWidth="300.0" prefHeight="80.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnClear" disable="true" mnemonicParsing="false" onAction="#handleClearAll" text="Clear All">
+            <Button fx:id="btnClear" disable="true" mnemonicParsing="false" onAction="#handleClearAll" style="-fx-background-color: darkslategray;" text="Clear Players" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="btnNewHand" disable="true" mnemonicParsing="false" onAction="#handleNewHand" text="New Hand">
+            <Button fx:id="btnNewHand" disable="true" mnemonicParsing="false" onAction="#handleNewHand" style="-fx-background-color: darkslategray;" text="Clear Table" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="btnShuffle" mnemonicParsing="false" onAction="#handleShuffle" text="Shuffle">
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
-            <Button fx:id="btnDealFlip" disable="true" mnemonicParsing="false" onAction="#handleDealFlip" text="Quick Flip">
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
-            <Button fx:id="btnDealHand" disable="true" mnemonicParsing="false" onAction="#handleDealHand" text="Deal Hand">
+            <Button fx:id="btnDealHand" mnemonicParsing="false" onAction="#handleDealHand" style="-fx-background-color: darkslategray;" text="Deal Hand" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font></Button>
