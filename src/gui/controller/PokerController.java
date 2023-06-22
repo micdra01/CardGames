@@ -4,8 +4,6 @@ import be.Card;
 import gui.model.PokerModel;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +32,7 @@ public class PokerController implements Initializable {
     @FXML
     private FlowPane board;
     @FXML
-    private HBox buttonArea, seat1, seat2, seat3, seat4, seat5, seat6;
+    private HBox seat1, seat2, seat3, seat4, seat5, seat6;
     @FXML
     private Button btnClear, btnNewHand, btnDealHand;
     @FXML
@@ -43,7 +41,7 @@ public class PokerController implements Initializable {
     private Label lblSeat1, lblSeat2, lblSeat3, lblSeat4, lblSeat5, lblSeat6;
 
     private PokerModel pokerModel;
-    private List<HBox> players = new ArrayList<>();
+    private final List<HBox> players = new ArrayList<>();
     private int index = 0;
 
 
@@ -77,50 +75,42 @@ public class PokerController implements Initializable {
             List<HBox> playersCopy = players.stream().sorted(Comparator.comparing(Node::getId)).toList();
 
             //Deal hole cards to each player
-            Timeline holeCards = new Timeline(new KeyFrame(Duration.seconds(2.5/ (playersCopy.size()*2) ), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    dealCard(playersCopy.get(index));
-                    index++;
-                    if(index >= playersCopy.size()) index = 0;
-                }
+            Timeline holeCards = new Timeline(new KeyFrame(
+                    Duration.seconds(2.5/ (playersCopy.size()*2) ),
+                    event -> {
+                dealCard(playersCopy.get(index));
+                index++;
+                if(index >= playersCopy.size()) index = 0;
             }));
+
             holeCards.setCycleCount(playersCopy.size()*2);
             holeCards.play();
 
 
             //Deal the flop
-            Timeline flop = new Timeline(new KeyFrame(Duration.millis(250), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    dealCommunityCard(3); //Flop
-                }
-            }));
+            Timeline flop = new Timeline(new KeyFrame(
+                    Duration.millis(250),
+                    event -> dealCommunityCard(3)));
+
             flop.setDelay(Duration.seconds(3.5));
             flop.play();
 
 
             //Deal the turn and river
-            Timeline turnAndRiver = new Timeline(new KeyFrame(Duration.seconds(1.5), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    dealCommunityCard(1);
-                }
-            }));
+            Timeline turnAndRiver = new Timeline(new KeyFrame(
+                    Duration.seconds(1.5),
+                    event -> dealCommunityCard(1)));
 
             turnAndRiver.setDelay(Duration.seconds(4));
             turnAndRiver.setCycleCount(2);
             turnAndRiver.play();
 
 
-            //Enable clear & new hand buttons once hand is over
-            Timeline enableClearBtn = new Timeline(new KeyFrame(Duration.ONE, new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    btnClear.setDisable(false);
-                    btnNewHand.setDisable(false);
-                }
-            }));
+            //Enable clear buttons once hand is over
+            Timeline enableClearBtn = new Timeline(new KeyFrame(
+                    Duration.ONE,
+                    event -> disableDealButtons(true)));
+
             enableClearBtn.setDelay(Duration.seconds(7));
             enableClearBtn.play();
         }
@@ -182,7 +172,7 @@ public class PokerController implements Initializable {
     private void openTakeSeat(int seatNo) {
         //Load the new stage & view
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/view/TakeSeat.fxml"));
-        Parent root = null;
+        Parent root;
 
         try {
             root = loader.load();
